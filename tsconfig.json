@@ -1,0 +1,39 @@
+{
+    "compilerOptions": {
+        "module": "es2022",
+        "target": "es2022",
+        "moduleResolution": "node",
+        "outDir": "dist/web/script",
+        "sourceMap": true,
+        "preserveConstEnums": true,
+        "removeComments": true,
+        "allowUnusedLabels": false,
+        "alwaysStrict": true,
+        "exactOptionalPropertyTypes": true,
+        "noImplicitAny": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "strict": true,
+        "strictBindCallApply": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "useUnknownInCatchVariables": true,
+        "allowUnreachableCode": true,
+        "noUncheckedIndexedAccess": true,
+        //Production
+        //"noUnusedLocals": true,
+        // "noUnusedParameters": true,
+    },
+    "files": [
+        "source/script/index.ts",
+    ],
+    "exclude": [
+        "node_modules",
+    ],
+    "ts-node": {
+        "esm": true
+    }
+}
