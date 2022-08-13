@@ -3,6 +3,7 @@ import webpack, { Configuration, } from 'webpack';
 import { VueLoaderPlugin } from 'vue-loader';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
 
 import environment from '../core/index.js'
 
@@ -60,7 +61,15 @@ const base: Configuration = {
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             template: environment.source.index,
-        })
+        }),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: environment.source.content,
+                    to: environment.output.web.content,
+                }
+            ]
+        }),
     ],
 };
 

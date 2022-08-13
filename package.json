@@ -29,6 +29,7 @@
   "homepage": "https://github.com/PhotonRush/solar-genesis#readme",
   "devDependencies": {
     "@types/fs-extra": "^9.0.13",
+    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "del": "^7.0.0",
     "fs-extra": "^10.1.0",

@@ -11,3 +11,8 @@ Solar Genesis is built using Vue, Typescript, Webpack, SASS and many other libra
 Copyright (c) 2019 - Present, Microsoft Corporation, with Reserved Font Name Cascadia Code.
 
 Provided under SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+
+## favicon
+Ringed Planet emoji from [Open Emoji](https://openmoji.org/library/emoji-1FA90/)
+
+Author Liz Bravo provided under CC-BY-SA-4.0
