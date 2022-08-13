@@ -67,6 +67,7 @@ const base: Configuration = {
                 {
                     from: environment.source.content,
                     to: environment.output.web.content,
+                    filter: (path) => !path.includes('_notes'),
                 }
             ]
         }),
