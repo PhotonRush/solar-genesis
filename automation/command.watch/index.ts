@@ -13,7 +13,6 @@ function runCommand(command: string, args: Array<string>) {
         env: npmRunPathEnv({ cwd: environment.location }),
     };
 
-
     const child = spawn(actualCommand, args, spawnOptions);
     child.stdout.pipe(process.stdout);
     child.stderr.pipe(process.stderr);

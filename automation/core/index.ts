@@ -4,19 +4,19 @@ import { ensure } from './util.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-type OutputMap = {
+export type OutputMap = {
     location: string,
     web: LocationMap
 }
 
-type LocationMap = {
+export type LocationMap = {
     location: string,
     script: string,
     style: string,
     index: string,
 }
 
-type Environment = {
+export type Environment = {
     location: string,
     source: LocationMap,
     output: OutputMap,
@@ -59,8 +59,8 @@ function createEnvironment(location: string): Environment {
     };
 }
 
-const _environment: Environment = createEnvironment(resolve(__dirname, '../..'));
+const environment: Environment = createEnvironment(resolve(__dirname, '../..'));
 
-ensure(_environment.output.web.location);
+ensure(environment.output.web.location);
 
-export default _environment;
+export default environment;
