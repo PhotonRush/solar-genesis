@@ -2,6 +2,7 @@ import { resolve } from 'path';
 import webpack, { Configuration, } from 'webpack';
 import { VueLoaderPlugin } from 'vue-loader';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 import environment from '../core/index.js'
 
@@ -14,7 +15,7 @@ const base: Configuration = {
     },
     output: {
         filename: '[name].bundle.js',
-        path: environment.output.web.location
+        path: environment.output.web.location,
     },
 
     module: {
@@ -30,10 +31,8 @@ const base: Configuration = {
             },
             {
                 test: /\.css$/,
-                use: [
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
 
-                    'css-loader'
-                ]
             },
             {
                 test: /\.s[ac]ss$/i,
@@ -57,6 +56,7 @@ const base: Configuration = {
             __VUE_OPTIONS_API__: true,
             __VUE_PROD_DEVTOOLS__: true,
         }),
+        new MiniCssExtractPlugin(),
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             template: environment.source.index,
