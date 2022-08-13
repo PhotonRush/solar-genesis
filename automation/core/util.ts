@@ -1,12 +1,6 @@
-import { existsSync, mkdirSync } from 'fs';
-import { resolve, join, parse, sep } from 'path';
+import { mkdirSync } from 'fs';
 
-
-function resolver(root: string, index: number, array: Array<string>) {
-    return resolve(root, (join(...array.slice(0, index + 1))));
-}
-
-export function ensure(location: string) {
+export function ensure(location: string): void {
     mkdirSync(location, {
         recursive: true,
     });

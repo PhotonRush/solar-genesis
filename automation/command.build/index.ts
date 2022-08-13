@@ -1,19 +1,19 @@
 import webpack from 'webpack';
 
-import { production, development } from './webpack.config.js';
+import { development } from './webpack.config.js';
 
 // const compiler = webpack(production);
 const compiler = webpack(development);
 
 
-function outputResults(stats?: webpack.Stats) {
+function outputResults(stats?: webpack.Stats): void {
     if (!stats) {
         throw new Error('No Stats object to report!');
     }
 
     console.log(stats.toString({
         chunks: false,
-        colors: true
+        colors: true,
     }));
 }
 

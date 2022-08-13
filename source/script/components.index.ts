@@ -2,7 +2,7 @@ import SgLoader from './ui/sg-frame.vue';
 
 
 const components = [
-    SgLoader
+    SgLoader,
 ];
 
 export default components;

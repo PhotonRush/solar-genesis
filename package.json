@@ -9,6 +9,7 @@
     "clean": "ts-node ./automation/command.clean/index.ts",
     "watch": "ts-node ./automation/command.watch/index.ts",
     "build": "ts-node ./automation/command.build/index.ts",
+    "lint": "eslint .",
     "serve": "http-server -c-1 dist/web"
   },
   "repository": {
@@ -29,9 +30,12 @@
   "homepage": "https://github.com/PhotonRush/solar-genesis#readme",
   "devDependencies": {
     "@types/fs-extra": "^9.0.13",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "del": "^7.0.0",
+    "eslint": "^8.21.0",
     "fs-extra": "^10.1.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.1",

@@ -5,24 +5,24 @@ import { ensure } from './util.js';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export type OutputMap = {
-    location: string,
-    web: LocationMap
-}
+    location: string;
+    web: LocationMap;
+};
 
 export type LocationMap = {
-    location: string,
-    script: string,
-    style: string,
-    index: string,
-    content: string,
-}
+    location: string;
+    script: string;
+    style: string;
+    index: string;
+    content: string;
+};
 
 export type Environment = {
-    location: string,
-    source: LocationMap,
-    output: OutputMap,
-    isWindows: boolean,
-}
+    location: string;
+    source: LocationMap;
+    output: OutputMap;
+    isWindows: boolean;
+};
 
 function createSource(location: string): LocationMap {
     return {

@@ -1,11 +1,11 @@
 import { resolve } from 'path';
-import webpack, { Configuration, } from 'webpack';
+import webpack, { type Configuration } from 'webpack';
 import { VueLoaderPlugin } from 'vue-loader';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 
-import environment from '../core/index.js'
+import environment from '../core/index.js';
 
 const DefinePlugin = webpack.DefinePlugin;
 
@@ -23,33 +23,32 @@ const base: Configuration = {
         rules: [
             {
                 test: /\.vue$/,
-                loader: 'vue-loader'
+                loader: 'vue-loader',
             },
             {
                 test: /\.tsx?$/,
                 loader: 'ts-loader',
-                options: { appendTsSuffixTo: [/\.vue$/] }
+                options: { appendTsSuffixTo: [/\.vue$/] },
             },
             {
                 test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader'],
-
             },
             {
                 test: /\.s[ac]ss$/i,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    "css-loader",
-                    "sass-loader",
+                    'css-loader',
+                    'sass-loader',
                 ],
             },
-        ]
+        ],
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js', '.vue'],
         alias: {
             'vue$': 'vue/dist/vue.esm-bundler.js',
-        }
+        },
     },
 
     plugins: [
@@ -68,8 +67,8 @@ const base: Configuration = {
                     from: environment.source.content,
                     to: environment.output.web.content,
                     filter: (path) => !path.includes('_notes'),
-                }
-            ]
+                },
+            ],
         }),
     ],
 };
