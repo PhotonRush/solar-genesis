@@ -152,7 +152,6 @@ rules['@typescript-eslint/typedef'] = OFF;
 rules['@typescript-eslint/unbound-method'] = ERROR;
 rules['@typescript-eslint/unified-signatures'] = ERROR;
 
-
 toggle('@typescript-eslint/brace-style', ERROR, '1tbs');
 toggle('@typescript-eslint/comma-spacing', ERROR);
 toggle('@typescript-eslint/func-call-spacing', ERROR);
@@ -166,10 +165,6 @@ toggle('@typescript-eslint/space-before-function-paren', ERROR, NEVER);
 toggle('@typescript-eslint/space-infix-ops', ERROR);
 
 rules['@typescript-eslint/type-annotation-spacing'] = ERROR;
-
-
-
-
 
 module.exports = {
     parser: '@typescript-eslint/parser',
