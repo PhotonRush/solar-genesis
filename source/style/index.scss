@@ -1,4 +1,14 @@
+@use '../script/ui/variables.scss';
+@use '../../node_modules/normalize.css/normalize.css';
+
+@font-face {
+    font-family: 'Cascadia Code';
+    src: url('../content/contrib/cascadia-code/woff2/CascadiaCode.woff2');
+  }
+
 body {
-    color: white;
-    background-color: black;
+    color: variables.$foreground-base;
+    background-color: variables.$background-base;
+    font-family: 'Cascadia Code';
+    font-size: 16px;
 }

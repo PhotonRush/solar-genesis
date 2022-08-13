@@ -1,9 +1,9 @@
-import { resolve } from 'path';
+import { resolve, relative } from 'path';
 import webpack, { type Configuration } from 'webpack';
 import { VueLoaderPlugin } from 'vue-loader';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import CopyPlugin from 'copy-webpack-plugin';
+// import CopyPlugin from 'copy-webpack-plugin';
 
 import environment from '../core/index.js';
 
@@ -17,6 +17,13 @@ const base: Configuration = {
     output: {
         filename: '[name].bundle.js',
         path: environment.output.web.location,
+        assetModuleFilename: (path) => {
+            if (typeof path.filename === 'undefined') {
+                throw new Error('Invalid Path data.');
+            }
+
+            return relative(environment.source.location, path.filename).replaceAll('\\', '/');
+        },
     },
 
     module: {
@@ -42,6 +49,17 @@ const base: Configuration = {
                     'sass-loader',
                 ],
             },
+            {
+
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+            },
+            {
+
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                type: 'asset/resource',
+
+            },
         ],
     },
     resolve: {
@@ -61,15 +79,15 @@ const base: Configuration = {
         new HtmlWebpackPlugin({
             template: environment.source.index,
         }),
-        new CopyPlugin({
-            patterns: [
-                {
-                    from: environment.source.content,
-                    to: environment.output.web.content,
-                    filter: (path) => !path.includes('_notes'),
-                },
-            ],
-        }),
+        // new CopyPlugin({
+        //     patterns: [
+        //         {
+        //             from: environment.source.content,
+        //             to: environment.output.web.content,
+        //             filter: (path) => !path.includes('_notes'),
+        //         },
+        //     ],
+        // }),
     ],
 };
 

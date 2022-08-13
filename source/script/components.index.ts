@@ -1,8 +1,12 @@
-import SgLoader from './ui/sg-frame.vue';
+import SgFrame from './ui/sg-frame.vue';
+import SgMainMenu from './ui/sg-main-menu.vue';
+import SgButton from './ui/core/sg-button.vue';
 
 
 const components = [
-    SgLoader,
+    SgFrame,
+    SgButton,
+    SgMainMenu,
 ];
 
 export default components;

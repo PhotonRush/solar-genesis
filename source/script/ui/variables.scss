@@ -1,0 +1,21 @@
+$background-base: #1E1E1E;
+$foreground-base: #D4D4D4;
+
+$red: rgb(128, 0, 0);
+$green: rgb(0, 128, 0);
+$blue: rgb(0, 0, 128);
+$yellow: rgb(128, 128, 0);
+$purple: rgb(128, 0 , 128);
+$cyan: rgb(0, 128, 128);
+
+
+
+
+
+$warning-header: repeating-linear-gradient(
+  45deg,
+  $background-base,
+  $background-base 10px,
+  $yellow 10px,
+  $yellow 20px
+);

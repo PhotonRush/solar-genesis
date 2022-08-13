@@ -1,16 +1,14 @@
 import { createApp } from 'vue';
 
 import '../style/index.scss';
+import '../content/contrib/favicon.png';
 import components from './components.index';
 
 const app = createApp({
     template: '<sg-frame></sg-frame>',
 });
 
-if (components.length > 0 && components[0] != null) {
-    app.component('sg-frame', components[0]);
-}
-
+components.forEach(c => app.component(c.name, c));
 
 
 app.mount('#main');
