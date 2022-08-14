@@ -1,16 +1,24 @@
 <template>
-    <button class="sg-button">Test</button>
+    <button class="sg-button">{{ text }}</button>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { defineComponent } from 'vue';
+
+defineProps({
+  text: String,
+});
+
+
+</script>
+
+<script lang="ts">
+
 
 export default defineComponent({
     name: 'sg-button',
-    data() {
-        return {
-            greeting: 'Hello World!'
-        }
+    props: {
+        text: String,
     }
 });
 </script>
@@ -20,9 +28,10 @@ export default defineComponent({
 
 button.sg-button {
     color: variables.$foreground-base;
-    background-color: variables.$blue;
+    background-color: variables.$green;
     border: outset;
     cursor: pointer;
+    width: 100%;
 }
 
 </style>

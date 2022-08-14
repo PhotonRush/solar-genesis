@@ -1,8 +1,6 @@
 <template>
 <div class="container">
-    <h1>Hello Worlds</h1>
-    <p>Bottom Text</p>
-    <sg-button></sg-button>
+    <sg-main-menu></sg-main-menu>
 </div>
 
 </template>
@@ -21,10 +19,12 @@ export default defineComponent({
 </script>
 
 <style>
-/* .container {
-    padding-top: 2em;
+.container {
+    min-width: 640px;
+    max-width: 1920px;
+    /* padding-top: 2em;
     width: 1920px;
     margin: 0 auto;
-    border: solid thin gray;
-} */
+    border: solid thin gray; */
+}
 </style>

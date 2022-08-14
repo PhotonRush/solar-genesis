@@ -1,6 +1,14 @@
 <template>
-    <h1>Hello</h1>
-    <p class="greeting">{{ greeting }}</p>
+    <div class="sg-main-menu">
+        <h1>Solar Genesis</h1>
+        <div class="menu-panel">
+            <sg-button text="Load Game"></sg-button>
+            <sg-button text="New Game"></sg-button>
+            <sg-button text="Credits"></sg-button>
+            <sg-button text="Quit"></sg-button>
+        </div>
+
+    </div>
 </template>
 
 <script lang="ts">
@@ -16,9 +24,23 @@ export default defineComponent({
 });
 </script>
 
-<style>
-.greeting {
-    color: red;
-    font-weight: bold;
+<style lang="scss">
+.sg-main-menu {
+    h1 {
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .menu-panel {
+        display: flex;
+        flex-direction: column;
+        width: 25%;
+        margin: 0 auto;
+
+        .sg-button {
+            margin-top: .25em;
+        }
+    }
+
+
 }
 </style>
