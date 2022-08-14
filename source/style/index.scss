@@ -4,7 +4,11 @@
 @font-face {
     font-family: 'Cascadia Code';
     src: url('../content/contrib/cascadia-code/woff2/CascadiaCode.woff2');
-  }
+}
+
+* {
+    box-sizing: border-box;
+}
 
 body {
     color: variables.$foreground-base;
