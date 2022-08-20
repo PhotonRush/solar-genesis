@@ -96,7 +96,7 @@ export default class TileMaze implements IMaze<Tile> {
 
     public forEach(fn: CellIterator<Tile>) {
         for(let row = 0; row < this.rowCount; row++) {
-            for(let column = 0; column < this.rowCount; column++) {
+            for(let column = 0; column < this.columnCount; column++) {
                const cell = this.at(row, column)!;
 
                fn(cell, row, column, this);
@@ -105,7 +105,7 @@ export default class TileMaze implements IMaze<Tile> {
     }
 
     public forEachRow(row: number, fn: CellIterator<Tile>) {
-        for(let column = 0; column < this.rowCount; column++) {
+        for(let column = 0; column < this.columnCount; column++) {
             const cell = this.at(row, column)!;
 
             fn(cell, row, column, this);

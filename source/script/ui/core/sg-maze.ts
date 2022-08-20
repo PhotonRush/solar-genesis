@@ -14,7 +14,6 @@ function render(maze?: TileMaze | null): VNode {
         return h('div', {class: 'sg-maze empty'});
     }
 
-
     const rows: Array<VNode> = [];
 
     for(let row = 0; row < maze.rowCount; row++)  {

@@ -7,12 +7,13 @@ export enum TileTypes {
     Unknown,
     PlayerDrone,
     EnemyDrone,
-    Door,
     Entrance,
     Exit,
     Warp,
     Loot,
+    Door,
     Terminal,
+    Trap,
 };
 
 export default class Tile implements ICell {
@@ -89,7 +90,7 @@ export default class Tile implements ICell {
             case TileTypes.EnemyDrone:
                 return '⌬';
             case TileTypes.Door:
-                return '⏛';
+                return '⊜';
             case TileTypes.Entrance:
                 return '⊙';
             case TileTypes.Exit:
@@ -100,6 +101,8 @@ export default class Tile implements ICell {
                 return '⍟';
             case TileTypes.Terminal:
                 return '⌨';
+            case TileTypes.Trap:
+                return '⊗';
         }
     }
 
@@ -127,6 +130,8 @@ export default class Tile implements ICell {
                 return 'Loot';
             case TileTypes.Terminal:
                 return 'Terminal';
+            case TileTypes.Trap:
+                return 'Trap';
         }
     }
 

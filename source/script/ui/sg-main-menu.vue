@@ -20,13 +20,18 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { TileTypes } from '../modes/maze/Tile';
 import TileMaze from '../modes/maze/TileMaze';
 
 const maze = new TileMaze({
     lootCount: 5,
+    rows: 32,
+    columns: 8,
 });
 
 maze.generate();
+
+// maze.at(23,23)!.type = TileTypes.Warp;
 
 export default defineComponent({
     name: 'sg-main-menu',
@@ -36,7 +41,6 @@ export default defineComponent({
             maze,
         }
     }
-
 });
 </script>
 
