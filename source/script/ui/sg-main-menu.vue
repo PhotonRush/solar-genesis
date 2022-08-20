@@ -6,6 +6,7 @@
         <div class="menu-panel">
             <sg-button text="Load Game"></sg-button>
             <sg-button text="New Game"></sg-button>
+            <sg-button text="Updates"></sg-button>
             <sg-button text="Options"></sg-button>
             <sg-button text="Credits"></sg-button>
             <sg-button text="Quit"></sg-button>
@@ -13,19 +14,29 @@
 
         <p class="footer-text">a game by Aaron Willows &copy; 2022</p>
 
+        <sg-maze :maze="maze"></sg-maze>
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import TileMaze from '../modes/maze/TileMaze';
+
+const maze = new TileMaze();
+
+maze.generate();
+
+const mazeText = maze.render();
 
 export default defineComponent({
     name: 'sg-main-menu',
     data() {
         return {
-            greeting: 'Hello World!'
+            greeting: 'Hello World!',
+            maze,
         }
     }
+
 });
 </script>
 
@@ -38,7 +49,7 @@ export default defineComponent({
     }
 
     .sg-banner {
-        margin: .5em 0;
+        margin: .5em;
     }
 
     p.footer-text {
@@ -56,7 +67,5 @@ export default defineComponent({
             margin-top: .25em;
         }
     }
-
-
 }
 </style>

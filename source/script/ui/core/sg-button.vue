@@ -26,12 +26,31 @@ export default defineComponent({
 <style lang="scss">
 @use '../variables.scss';
 
-button.sg-button {
+.sg-button {
     color: variables.$foreground-base;
     background-color: variables.$green;
+
     border: outset;
     cursor: pointer;
     width: 100%;
 }
+
+.sg-button:hover {
+    animation: button-hover 3s ease infinite;
+}
+
+@keyframes button-hover {
+    0% {
+        background-color: variables.$green;
+    }
+    50% {
+        background-color: variables.$purple;
+    }
+    100% {
+        background-color: variables.$green;
+    }
+}
+
+
 
 </style>

@@ -73,7 +73,7 @@ rules['no-loss-of-precision'] = OFF;
 rules['@typescript-eslint/no-loss-of-precision'] = ERROR;
 rules['no-magic-numbers'] = OFF;
 rules['@typescript-eslint/no-magic-numbers'] = [ERROR, {
-    ignore: [ 0, 1],
+    ignore: [ 0, 1, 0n, 1n],
 }];
 rules['@typescript-eslint/no-meaningless-void-operator'] = ERROR;
 rules['@typescript-eslint/no-misused-new'] = ERROR;

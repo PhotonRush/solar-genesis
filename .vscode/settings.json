@@ -6,5 +6,12 @@
     "eslint.validate": [
         "javascript",
         "typescript"
+    ],
+    "cSpell.words": [
+        "aldous",
+        "Backtracker",
+        "Broder",
+        "gameplay",
+        "Straylight"
     ]
 }

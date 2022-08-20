@@ -30,10 +30,10 @@ export default defineComponent({
 @use '../variables.scss';
 
 .sg-banner {
-    width: 100%;
     background: variables.$warning-header;
     padding: .5em 0;
     border: outset;
+
 
     p.banner-text {
         max-width: 50%;
