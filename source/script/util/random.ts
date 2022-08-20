@@ -69,7 +69,7 @@ export const systemPrng: IPrng = {
         return array.splice(index, 1)[0]!;
     },
 
-    cutMany<T>(array: Array<T>): Array<T> {
+    cutMany<T>(array: Array<T>, count: number): Array<T> {
         if(array.length === 0) {
             return [];
         }
@@ -81,7 +81,7 @@ export const systemPrng: IPrng = {
         const indexes: Array<number> = toIndexArray(array);
         const result: Array<T> = [];
 
-        for(let j = 0; j < indexes.length; j++) {
+        for(let j = 0; j < count; j++) {
             if(indexes.length <= 0) {
                 break;
             }

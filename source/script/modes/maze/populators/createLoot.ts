@@ -30,7 +30,9 @@ function findRows(maze: IMaze<Tile>, count: number, rng: IPrng): Array<number> {
         }
     }
 
-    return rng.pickMany(candidates, count);
+    const result = rng.pickMany(candidates, count);
+
+    return result;
 }
 
 function findCell(row: number, maze: IMaze<Tile>, rng: IPrng) {

@@ -31,6 +31,9 @@ function render(maze?: TileMaze | null): VNode {
                 style = 'color: rgb(256, 0, 0)';
             }
 
+            if(cell.type === TileTypes.Loot) {
+                style = 'color: rgb(256, 256, 0)';
+            }
 
             columns.push(h('td', {
                 'data-row': row,

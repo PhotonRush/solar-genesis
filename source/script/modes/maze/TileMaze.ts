@@ -1,11 +1,12 @@
 import { IPrng, systemPrng } from '../../util/random';
 import BasicMaze from './BasicMaze';
-import generators, { MazeGenerator } from './generators';
+import generators from './generators';
 import { CellIterator, IMaze } from './IMaze';
 import { ITileMazeOptions } from './ITileMazeOptions';
 import createDrones from './populators/createDrones';
 import createEntrances from './populators/createEntrances';
 import createExits from './populators/createExits';
+import createLoot from './populators/createLoot';
 import Tile, { TileTypes } from './Tile';
 
 
@@ -13,18 +14,15 @@ export const TEXT_WALL = 'W';
 export const TEXT_EMPTY = ' ';
 
 const defaultOptions: Required<ITileMazeOptions> = {
-    generator:generators.aldousBroder,
+    generator: generators.aldousBroder,
     rng: systemPrng,
     rows: 16,
     columns: 16,
     entrances: 1,
     exits: 1,
     droneCount: 1,
-}
-
-
-
-
+    lootCount: 1,
+};
 
 export default class TileMaze implements IMaze<Tile> {
     private _options: Required<Readonly<ITileMazeOptions>>;
@@ -39,10 +37,10 @@ export default class TileMaze implements IMaze<Tile> {
         this._rowCount = 0;
         this._columnCount = 0;
 
-        this._options = Object.assign({}, options, defaultOptions);
+        this._options = Object.assign({}, defaultOptions, options);
     }
 
-    get options() : Readonly<ITileMazeOptions> {
+    get options() : Required<Readonly<ITileMazeOptions>> {
         return this._options;
     }
 
@@ -76,22 +74,17 @@ export default class TileMaze implements IMaze<Tile> {
         this._columnCount = 0;
     }
 
-
-
     public generate() {
         const maze = new BasicMaze(this._options.rows, this._options.columns);
 
         this._options.generator(maze, this._options.rng);
-
-        console.log(maze.render());
 
         this.deserialize(maze.serialize());
 
         createEntrances(this, this._options.entrances, this._options.rng);
         createExits(this, this._options.entrances, this._options.rng);
         createDrones(this, this._options.droneCount, this._options.rng);
-
-
+        createLoot(this, this._options.lootCount, this._options.rng);
     }
 
     public atRandom(): Tile {
@@ -100,8 +93,6 @@ export default class TileMaze implements IMaze<Tile> {
 
         return this._grid[row]![column]!;
     }
-
-
 
     public forEach(fn: CellIterator<Tile>) {
         for(let row = 0; row < this.rowCount; row++) {

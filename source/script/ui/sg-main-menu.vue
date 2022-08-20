@@ -22,11 +22,11 @@
 import { defineComponent } from 'vue';
 import TileMaze from '../modes/maze/TileMaze';
 
-const maze = new TileMaze();
+const maze = new TileMaze({
+    lootCount: 5,
+});
 
 maze.generate();
-
-const mazeText = maze.render();
 
 export default defineComponent({
     name: 'sg-main-menu',
