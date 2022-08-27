@@ -1,7 +1,6 @@
-import { IPrng } from '../../../util/random';
 import BasicMaze from '../BasicMaze';
 
-export default function binaryTree(maze: BasicMaze, rng: IPrng) {
+export default function binaryTree(maze: BasicMaze, rng: IRandomGenerator) {
     maze.forEach((cell) => {
         const choices = [];
 

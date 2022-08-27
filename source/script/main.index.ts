@@ -15,4 +15,7 @@ components.forEach(c => app.component(c.name, c));
 app.mount('#main');
 
 
+
+
+
 test();

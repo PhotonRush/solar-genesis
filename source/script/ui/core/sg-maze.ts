@@ -1,15 +1,34 @@
 
-import { defineComponent, h, VNode } from 'vue';
-import { TileTypes } from '../../modes/maze/Tile';
+import { h, VNode } from 'vue';
+import Tile, { TileTypes } from '../../modes/maze/Tile';
 import TileMaze from '../../modes/maze/TileMaze';
-
+import { boxWalls, createKey } from '../../modes/maze/wallStyle';
 
 type Props = {
     maze?: TileMaze;
+    pretty: boolean;
+};
+
+function isWall(tile?: Tile | null): boolean {
+    if(!tile) {
+        return false;
+    }
+
+    return tile.type === TileTypes.Wall;
+}
+
+function getCellContent(tile: Tile, fancy: boolean = false): string {
+    if(!fancy || tile.type !== TileTypes.Wall) {
+        return tile.toCharacter();
+    }
+
+    const key = createKey(tile);
+
+    return boxWalls[key]!;
 }
 
 
-function render(maze?: TileMaze | null): VNode {
+function renderTable(maze?: TileMaze | null, fancy: boolean = false): VNode {
     if(!maze) {
         return h('div', {class: 'sg-maze empty'});
     }
@@ -17,29 +36,26 @@ function render(maze?: TileMaze | null): VNode {
     const rows: Array<VNode> = [];
 
     for(let row = 0; row < maze.rowCount; row++)  {
-        const columns: Array<VNode> = []
+        const columns: Array<VNode> = [];
 
         maze.forEachRow(row, (cell, row, column) => {
+            let content = getCellContent(cell, fancy);
+            const key = createKey(cell);
+
             let style = '';
 
-            if(cell.type !== TileTypes.Wall) {
-                style = 'color: rgb(0, 256, 0)';
-            }
-
-            if(cell.type === TileTypes.EnemyDrone) {
-                style = 'color: rgb(256, 0, 0)';
-            }
-
-            if(cell.type === TileTypes.Loot) {
-                style = 'color: rgb(256, 256, 0)';
+            if(cell.type === TileTypes.Wall) {
+                content = '';
             }
 
             columns.push(h('td', {
                 'data-row': row,
                 'data-col': column,
+                'data-wall': key,
+                'data-type': cell.typeName,
                 title: cell.typeName,
                 style,
-            }, cell.toCharacter()));
+            }, content));
         });
 
         rows.push(h('tr', {
@@ -48,12 +64,14 @@ function render(maze?: TileMaze | null): VNode {
     }
 
     return h('div', {class: 'sg-maze'}, [
-        h('table', rows),
+        h('div', [
+            h('table', rows),
+        ]),
     ]);
 }
 
-const SgMaze = (props: Props ) => {
-    return render(props.maze);
+const SgMaze = (props: Props) => {
+    return renderTable(props.maze);
 }
 
 SgMaze.props = ['maze'];

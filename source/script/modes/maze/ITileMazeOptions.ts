@@ -1,9 +1,8 @@
-import { IPrng } from '../../util/random';
 import { MazeGenerator } from './generators';
 
 export interface ITileMazeOptions {
     generator?: MazeGenerator;
-    rng?: IPrng;
+    rng?: IRandomGenerator;
     rows?: number;
     columns?: number;
     exits?: number;

@@ -1,8 +1,7 @@
-import { IPrng } from '../../../util/random';
 import { IMaze } from '../IMaze';
 import Tile, { TileTypes } from '../Tile';
 
-export default function createEntrances(maze: IMaze<Tile>, count: number, rng: IPrng) {
+export default function createEntrances(maze: IMaze<Tile>, count: number, rng: IRandomGenerator) {
     const row = maze.rowCount - 2;
     const pool: Array<Tile> = [];
     const selected: Array<number> = [];

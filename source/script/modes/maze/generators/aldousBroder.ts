@@ -1,7 +1,7 @@
-import { IPrng } from '../../../util/random';
+
 import BasicMaze from '../BasicMaze';
 
-export default function aldousBroder(maze: BasicMaze, rng: IPrng) {
+export default function aldousBroder(maze: BasicMaze, rng: IRandomGenerator) {
     let cellsRemaining = maze.size - 1;
     let cell = maze.atRandom();
 

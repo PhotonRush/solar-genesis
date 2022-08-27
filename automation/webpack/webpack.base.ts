@@ -8,11 +8,13 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import environment from '../core/index.js';
 
 const DefinePlugin = webpack.DefinePlugin;
+const ProvidePlugin = webpack.ProvidePlugin;
 
 const base: Configuration = {
     entry: {
         main: resolve(environment.source.script, 'main.index.ts'),
         components: resolve(environment.source.script, 'components.index.ts'),
+        engine: resolve(environment.source.engine, 'index.ts'),
     },
     output: {
         filename: '[name].bundle.js',
@@ -73,6 +75,9 @@ const base: Configuration = {
         new DefinePlugin({
             __VUE_OPTIONS_API__: true,
             __VUE_PROD_DEVTOOLS__: true,
+        }),
+        new ProvidePlugin({
+            engine: resolve(environment.source.engine, 'index.ts'),
         }),
         new MiniCssExtractPlugin(),
         new VueLoaderPlugin(),

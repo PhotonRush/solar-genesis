@@ -1,6 +1,5 @@
-import { IPrng, systemPrng } from '../../util/random';
 import BasicCell from './BasicCell';
-import { CellIterator, IMaze } from './IMaze';
+import { CellIterator, CellIteratorBoolean, IMaze } from './IMaze';
 import { TEXT_WALL, TEXT_EMPTY } from './TileMaze';
 
 export default class BasicMaze implements IMaze<BasicCell> {
@@ -43,8 +42,8 @@ export default class BasicMaze implements IMaze<BasicCell> {
     }
 
     public atRandom(): BasicCell {
-        const row = systemPrng.nextInteger(0, this.rowCount - 1);
-        const column = systemPrng.nextInteger(0, this.columnCount - 1);
+        const row = engine.random.system.nextInteger(0, this.rowCount - 1);
+        const column = engine.random.system.nextInteger(0, this.columnCount - 1);
 
         return this._grid[row]![column]!;
     }
@@ -75,16 +74,11 @@ export default class BasicMaze implements IMaze<BasicCell> {
             cell.west = grid.at(row, column - 1);
             cell.east = grid.at(row, column + 1);
         });
+
     }
 
     public forEach(fn: CellIterator<BasicCell>) {
-        for(let row = 0; row < this.rowCount; row++) {
-            for(let column = 0; column < this.columnCount; column++) {
-               const cell = this.at(row, column)!;
-
-               fn(cell, row, column, this);
-            }
-        }
+        return engine.array.forEach2d(this._grid, (cell, row, column) => fn(cell, row, column, this));
     }
 
     public forEachRow(row: number, fn: CellIterator<BasicCell>) {
@@ -101,6 +95,12 @@ export default class BasicMaze implements IMaze<BasicCell> {
 
             fn(cell, row, column, this);
         }
+    }
+
+    public filter(fn: CellIteratorBoolean<BasicCell>): Array<BasicCell> {
+        const result = engine.array.filter2d(this._grid, (cell, row, column) => fn(cell, row, column, this));
+
+        return engine.array.flatten2d(result);
     }
 
     public render(): string {

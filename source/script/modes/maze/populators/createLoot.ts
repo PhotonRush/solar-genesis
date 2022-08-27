@@ -1,5 +1,3 @@
-import { toIndexArray } from '../../../util/array';
-import { IPrng } from '../../../util/random';
 import { IMaze } from '../IMaze';
 import Tile, { TileTypes } from '../Tile';
 
@@ -21,7 +19,7 @@ function canPlace(row: number, maze: IMaze<Tile>): boolean {
     return !hasDrone && hasEmpty;
 }
 
-function findRows(maze: IMaze<Tile>, count: number, rng: IPrng): Array<number> {
+function findRows(maze: IMaze<Tile>, count: number, rng: IRandomGenerator): Array<number> {
     const candidates: Array<number> = [];
 
     for(let row = 1; row < maze.rowCount - 1; row++) {
@@ -35,7 +33,7 @@ function findRows(maze: IMaze<Tile>, count: number, rng: IPrng): Array<number> {
     return result;
 }
 
-function findCell(row: number, maze: IMaze<Tile>, rng: IPrng) {
+function findCell(row: number, maze: IMaze<Tile>, rng: IRandomGenerator) {
     const pool: Array<Tile> = [];
 
     maze.forEachRow(row, (cell) => {
@@ -49,7 +47,7 @@ function findCell(row: number, maze: IMaze<Tile>, rng: IPrng) {
 
 
 
-export default function createLoot(maze: IMaze<Tile>, count: number, rng: IPrng) {
+export default function createLoot(maze: IMaze<Tile>, count: number, rng: IRandomGenerator) {
     const rows = findRows(maze, count, rng);
 
     rows.forEach(row => findCell(row, maze, rng));

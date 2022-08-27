@@ -1,7 +1,6 @@
-import { IPrng, systemPrng } from '../../util/random';
 import BasicMaze from './BasicMaze';
 import generators from './generators';
-import { CellIterator, IMaze } from './IMaze';
+import { CellIterator, CellIteratorBoolean, IMaze } from './IMaze';
 import { ITileMazeOptions } from './ITileMazeOptions';
 import createDrones from './populators/createDrones';
 import createEntrances from './populators/createEntrances';
@@ -15,7 +14,7 @@ export const TEXT_EMPTY = ' ';
 
 const defaultOptions: Required<ITileMazeOptions> = {
     generator: generators.aldousBroder,
-    rng: systemPrng,
+    rng: engine.random.system,
     rows: 16,
     columns: 16,
     entrances: 1,
@@ -104,6 +103,20 @@ export default class TileMaze implements IMaze<Tile> {
         }
     }
 
+    public filter(fn: CellIteratorBoolean<Tile>): Array<Tile> {
+        const result: Array<Tile> = [];
+
+        this.forEach((tile, row, column, maze) => {
+            if(fn(tile, row, column, maze)) {
+                result.push(tile);
+            }
+        });
+
+        return result;
+    }
+
+
+
     public forEachRow(row: number, fn: CellIterator<Tile>) {
         for(let column = 0; column < this.columnCount; column++) {
             const cell = this.at(row, column)!;
@@ -148,6 +161,13 @@ export default class TileMaze implements IMaze<Tile> {
 
             this._grid.push(columns);
         });
+
+        this.forEach((cell, row, column, grid) => {
+            cell.north = grid.at(row - 1, column);
+            cell.south = grid.at(row + 1, column);
+            cell.west = grid.at(row, column - 1);
+            cell.east = grid.at(row, column + 1);
+        });
     }
 
     serialize(): string {
@@ -169,6 +189,4 @@ export default class TileMaze implements IMaze<Tile> {
 
         return result;
     }
-
-
 }

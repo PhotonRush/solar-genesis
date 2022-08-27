@@ -1,8 +1,7 @@
-import { IPrng } from '../../../util/random';
 import BasicCell from '../BasicCell';
 import BasicMaze from '../BasicMaze';
 
-export default function sidewinder(maze: BasicMaze, rng: IPrng) {
+export default function sidewinder(maze: BasicMaze, rng: IRandomGenerator) {
     for(let row = 0; row < maze.rowCount; row++)  {
         let run: Array<BasicCell> = [];
 

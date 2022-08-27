@@ -11,6 +11,7 @@ export type OutputMap = {
 
 export type LocationMap = {
     location: string;
+    engine: string,
     script: string;
     style: string;
     index: string;
@@ -27,6 +28,7 @@ export type Environment = {
 function createSource(location: string): LocationMap {
     return {
         location,
+        engine: resolve(location, './engine'),
         script: resolve(location, './script'),
         style: resolve(location, './style'),
         content: resolve(location, './content'),
@@ -38,6 +40,7 @@ function createWebOutput(location: string): LocationMap {
     return {
         location,
         script: resolve(location, './script'),
+        engine: resolve(location, './engine'),
         style: resolve(location, './style'),
         content: resolve(location, './content'),
         index: resolve(location, './index.html'),
